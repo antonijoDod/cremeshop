@@ -2,36 +2,37 @@
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Jost', sans-serif;
-    line-height: 1.40;
+  margin: 0;
+  padding: 0;
+  font-family: 'Jost', sans-serif;
+  line-height: 1.40;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    @apply font-black text-black
+  font-family: 'Playfair Display', serif;
+  @apply font-black text-black
 }
 
 .btn {
-    letter-spacing: 0.75px;
-    @apply py-4 px-8 font-bold uppercase transition duration-150 inline-block
+  letter-spacing: 0.75px;
+  @apply py-4 px-8 font-bold uppercase transition duration-150 inline-block
 }
 
 .btn-primary {
-    &:hover {
-        @apply bg-white text-black
-    }
-    @apply bg-black text-white border
+  &:hover {
+    @apply bg-white text-black
+  }
+  @apply bg-black text-white border
 }
 
 .btn-secondary {
-    &:hover {
-        @apply bg-black text-white
-    }
-    @apply bg-white text-black border
+  &:hover {
+    @apply bg-black text-white
+  }
+
+  @apply bg-white text-black border
 }
 
 .btn-link {
-    @apply underline text-blue-500
+  @apply underline text-blue-500
 }
