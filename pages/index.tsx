@@ -1,15 +1,27 @@
 import React from "react";
 
-import { Container, Header, Main, Footer, Cards } from "@components";
+import { Container, Header, Main, Footer, Cards, Hero } from "@components";
 
 const Home: React.FC = () => {
     return (
-        <Container>
+        <>
             <Header />
-            <Main />
-            <Cards />
-            <Footer />
-        </Container>
+            <Hero />
+            <div>
+                <a href="#" className="btn">
+                    This is button
+                </a>
+                <a href="#" className="btn btn-primary">
+                    This is primaty button
+                </a>
+                <a href="#" className="btn btn-secondary">
+                    THis is secondary button
+                </a>
+                <a href="#" className="btn btn-link">
+                    This is link
+                </a>
+            </div>
+        </>
     );
 };
 
