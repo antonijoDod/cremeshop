@@ -1,6 +1,10 @@
 import React from "react";
 
-const Layout = ({ children }: any) => {
+interface LayoutInterface {
+    children: never;
+}
+
+const Layout: React.FC<LayoutInterface> = ({ children }) => {
     return <div>{children}</div>;
 };
 
