@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export function Trolly(props) {
+export const Trolly = (props) => {
     return (
         <svg fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
@@ -13,4 +13,4 @@ export function Trolly(props) {
             <circle cx={20.5} cy={21} r={1} stroke="#FCFCFC" strokeWidth={2} />
         </svg>
     );
-}
+};

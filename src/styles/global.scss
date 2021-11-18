@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
   letter-spacing: 0.75px;
-  @apply py-4 px-8 font-bold uppercase transition duration-150 inline-block
+  @apply py-4 px-8 font-bold uppercase transition duration-150 inline-block cursor-pointer
 }
 
 .btn-primary {
