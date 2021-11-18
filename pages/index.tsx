@@ -1,6 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import { Container, Header, Hero } from "@components";
+import { Container, Header, Hero, ProductList } from "@components";
 import commerce from "@lib/commerce";
 
 interface HomeInterface {
@@ -38,39 +37,7 @@ const Home: React.FC<HomeInterface> = ({ products, category }) => {
             </Container>
             <section>
                 <Container>
-                    <ul className="grid gap-8 grid-cols-4">
-                        {products.length > 0
-                            ? products.map((product) => (
-                                  <li key={product.id} className="mt-8">
-                                      <div className="flex justify-end w-full mb-8">
-                                          <span className="py-1 inline-block px-2 border">
-                                              New
-                                          </span>
-                                      </div>
-                                      <Image
-                                          height={280}
-                                          width={280}
-                                          src={product.image.url}
-                                          alt={product.image.filename}
-                                      />
-                                      <div className="text-center">
-                                          <h3 className="font-black text-xl mb-4">
-                                              {product.name}
-                                          </h3>
-                                          <div className="font-bold text-gray-primary mb-8">
-                                              {
-                                                  product.price
-                                                      .formatted_with_code
-                                              }
-                                          </div>
-                                          <a className="btn btn-secondary w-full">
-                                              Add to cart
-                                          </a>
-                                      </div>
-                                  </li>
-                              ))
-                            : "No products"}
-                    </ul>
+                    <ProductList products={products} />
                 </Container>
             </section>
         </>

@@ -6,5 +6,7 @@ export { Button } from "./button";
 export { Cards } from "./cards";
 export { Footer } from "./footer";
 export { Container } from "./container";
+export { ProductList } from "./productList";
+export { Product } from "./product";
 
 export { Hero } from "./homepage/hero";
