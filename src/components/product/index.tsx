@@ -12,6 +12,7 @@ interface ProductInterface {
             url: string;
             filename: string;
         };
+        permalink: string;
     };
 }
 

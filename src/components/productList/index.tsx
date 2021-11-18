@@ -12,7 +12,7 @@ interface ProductListInterface {
 export const ProductList: React.FC<ProductListInterface> = ({ products }) => {
     return (
         <ul className="grid gap-8 md:grid-cols-4 sm:grid-cols-2 justify-items-center">
-            {products.length > 0
+            {products.length
                 ? products.map((product) => (
                       <Product key={product.id} product={product} />
                   ))

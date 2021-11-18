@@ -3,7 +3,11 @@ import commerce from "@lib/commerce";
 import Image from "next/image";
 import Link from "next/link";
 
-const ProductPage = ({ product }) => {
+interface ProductPageInterface {
+    product: any;
+}
+
+const ProductPage: React.FC<ProductPageInterface> = ({ product }) => {
     console.log(product);
     return (
         <div>
@@ -35,7 +39,7 @@ export async function getStaticPaths() {
     const { data: products } = await commerce.products.list();
 
     return {
-        paths: products.map((product) => ({
+        paths: products.map((product: any) => ({
             params: {
                 permalink: product.permalink,
             },
@@ -44,7 +48,7 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps({ params: { permalink } }) {
+export async function getStaticProps({ params: { permalink } }: any) {
     const product = await commerce.products.retrieve(permalink, {
         type: "permalink",
     });
