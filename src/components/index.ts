@@ -1,4 +1,5 @@
 export { Header } from "./header";
+export { Layout } from "./layout";
 export { Menu } from "./menu";
 export { Logo } from "./logo";
 export { Main } from "./main";

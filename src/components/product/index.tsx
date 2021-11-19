@@ -13,6 +13,7 @@ interface ProductInterface {
             filename: string;
         };
         permalink: string;
+        created: number;
     };
 }
 
@@ -35,7 +36,7 @@ export const Product: React.FC<ProductInterface> = ({ product }) => {
                 </div>
             </Link>
             <div className="text-center">
-                <h3 className="font-black text-xl mb-4">{name}</h3>
+                <h3 className="font-black text-xl mt-4 mb-4">{name}</h3>
                 <div className="font-bold text-gray-primary mb-8">
                     {price.formatted_with_code}
                 </div>
