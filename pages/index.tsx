@@ -9,7 +9,6 @@ interface HomeInterface {
 }
 
 const Home: React.FC<HomeInterface> = ({ products, category }) => {
-    console.log(category);
     return (
         <Layout title="Home page" description="Home page descrition">
             <Hero />
@@ -34,6 +33,7 @@ const Home: React.FC<HomeInterface> = ({ products, category }) => {
                                 </h3>
                             </div>
                         </div>
+
                         <div className="bg-gray-200 col-span-3 relative flex items-center justify-center">
                             <Image
                                 src={category[1].assets[0].url}

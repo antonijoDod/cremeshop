@@ -9,5 +9,6 @@ export { Footer } from "./footer";
 export { Container } from "./container";
 export { ProductList } from "./productList";
 export { Product } from "./product";
+export { Pagination } from "./pagination";
 
 export { Hero } from "./homepage/hero";
