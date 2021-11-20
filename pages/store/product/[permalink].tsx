@@ -2,6 +2,7 @@ import React from "react";
 import commerce from "@lib/commerce";
 import Image from "next/image";
 import Link from "next/link";
+import { Layout } from "@components";
 
 interface ProductPageInterface {
     product: any;
@@ -9,27 +10,28 @@ interface ProductPageInterface {
 
 const ProductPage: React.FC<ProductPageInterface> = ({ product }) => {
     console.log(product);
+    const { name, image, description, price, seo } = product;
     return (
-        <div>
+        <Layout title={seo.title} description={seo.description}>
             <div>
                 <Image
-                    src={product.image.url}
-                    alt={product.image.filename}
+                    src={image.url}
+                    alt={image.filename}
                     height={280}
                     width={280}
                 />
             </div>
-            <h1>{product.name}</h1>
-            <div dangerouslySetInnerHTML={{ __html: product.description }} />
+            <h1>{name}</h1>
+            <div dangerouslySetInnerHTML={{ __html: description }} />
             <span className="text-3xl font-bold">
-                {product.price.formatted_with_code}
+                {price.formatted_with_code}
             </span>
             <div>
                 <Link href="/">
                     <a className="mt-8 btn btn-primary">BACK</a>
                 </Link>
             </div>
-        </div>
+        </Layout>
     );
 };
 

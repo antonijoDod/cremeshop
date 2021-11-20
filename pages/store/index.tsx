@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
-import { Container, Layout, ProductList } from "@components";
+import { Container, Layout, Pagination, ProductList } from "@components";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import commerce from "@lib/commerce";
-import { ChevronLeftIcon, ChevronRightIcon } from "@components/icons";
 
+// TODO Fix category select, color only active category
+// TODO Sort by and category select need to support deselect filters
 
 const StorePage = ({ products, categories }) => {
   const { data, meta: { pagination } } = products;
-  // const [page, setPage] = useState(1);
-  // const [sort, setSort] = useState("");
-  // const [categoryId, setCategoryId] = useState('');
+
+  const [active, setActive] = useState(false);
 
   const [query, setQuery] = useState({
     page: 1,
@@ -19,21 +18,16 @@ const StorePage = ({ products, categories }) => {
 
   const router = useRouter();
 
-  // useEffect(() => {
-  //   router.push(`/store?page=${page}&sortBy=${sort}&category_id=${categoryId}`);
-  // }, [page, sort,categoryId]);
-
   useEffect(() => {
-    // router.push(`/store?page=${page}&${query}`);
     router.push({
       pathname: router.pathname,
       query: query
     })
   }, [query]);
 
-  const handlePageClick = (event) => {
-    setQuery({...query, page: event.selected + 1});
-  };
+  const handlePaginationChange = (pageId) => {
+    setQuery({ ...query, page: pageId });
+  }
 
   const handleSort = (e) => {
     setQuery( {...query, sortBy: e.target.value})
@@ -41,6 +35,7 @@ const StorePage = ({ products, categories }) => {
 
   const handleCategorySelect = (id) => {
     setQuery({...query, page: 1, category_id: id })
+    setActive(true)
   }
 
   return (
@@ -85,7 +80,11 @@ const StorePage = ({ products, categories }) => {
                     <label className="items-center flex cursor-pointer mb-2">
                       <input type="radio" className="hidden" />
                       <div className="border border-solid border-black border-opacity-30 rounded-full mr-2 p-1">
-                        <div className="rounded-full h-2 w-2 bg-transparent"></div>
+                        {active ? (
+                        <div className="rounded-full h-2 w-2 bg-blue-500"></div>
+                        ): (
+                          <div className="rounded-full h-2 w-2 bg-transparent"></div>
+                        )}
                       </div>
                       {category.name}
                     </label>
@@ -96,25 +95,7 @@ const StorePage = ({ products, categories }) => {
           </div>
           <div className="w-3/4 pl-4">
             <ProductList products={products.data} numberOrRows={3} />
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel={<ChevronRightIcon />}
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pagination.total_pages}
-              previousLabel={<ChevronLeftIcon />}
-              renderOnZeroPageCount={null}
-              pageLinkClassName="rounded px-4 border inline-block"
-              previousClassName="p-2"
-              previousLinkClassName="bg-indigo-500"
-              nextClassName="p-2"
-              nextLinkClassName="bg-green-500"
-              breakLabel="..."
-              breakClassName="page-item"
-              breakLinkClassName="page-link"
-              containerClassName="inline-flex text-gray-primary border items-center my-8"
-              activeClassName="active"
-            />
+            <Pagination pagination={pagination} onPaginationClick={(e) => handlePaginationChange(e)}/>
           </div>
         </div>
       </Container>
@@ -124,7 +105,7 @@ const StorePage = ({ products, categories }) => {
 
 export default StorePage;
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }:any) {
   const queryProp = { limit: 9, ...query };
   const products = await commerce.products.list(queryProp);
   const { data: categories } = await commerce.categories.list();
